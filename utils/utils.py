@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 import shutil
-import requests
+import aiohttp
 
 def create_download_folder():
     download_dir = Path("data")
@@ -21,10 +21,15 @@ def generate_report_json(data, download_dir, filename):
     with open(full_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
-def download_image(url, path):
-    r = requests.get(url, stream=True)
+async def download_image(url, path):
 
-    if r.status_code == 200:
-        with open(path, "wb") as f:
-            for chunk in r.iter_content(1024):
-                f.write(chunk)
+    async with aiohttp.ClientSession() as session:
+
+        async with session.get(url) as resp:
+
+            if resp.status == 200:
+
+                data = await resp.read()
+
+                with open(path, "wb") as f:
+                    f.write(data)

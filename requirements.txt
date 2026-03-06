@@ -1,5 +1,9 @@
 playwright
 ultralytics
 pillow
-easyocr
 opencv-python
+tensorflow==2.12
+keras==2.12
+keras-ocr
+numpy==1.26.4
+aiohttp

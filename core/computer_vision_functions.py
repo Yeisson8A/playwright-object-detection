@@ -17,45 +17,44 @@ def detect_objects(path, model):
 
     return detections
 
-def extract_text(path, reader):
+def preprocess_image(path):
 
-    # cargar imagen
+    path = str(path)
     img = cv2.imread(path)
 
-    # ---- OPCION 2: ESCALAR IMAGEN ----
-    scale = 2
-    img = cv2.resize(img, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
-
-    # ---- OPCION 1: PREPROCESAMIENTO ----
-
-    # escala de grises
+    # convertir a escala de grises
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # reducir ruido
-    blur = cv2.GaussianBlur(gray, (5, 5), 0)
-
-    # mejorar contraste
-    thresh = cv2.adaptiveThreshold(
-        blur,
-        255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY,
-        11,
-        2
+    # escalar imagen (muy importante para texto pequeño)
+    scale = 2
+    gray = cv2.resize(
+        gray,
+        None,
+        fx=scale,
+        fy=scale,
+        interpolation=cv2.INTER_CUBIC
     )
 
-    # EasyOCR espera imagen en RGB
-    processed = cv2.cvtColor(thresh, cv2.COLOR_GRAY2RGB)
+    # mejorar contraste
+    gray = cv2.equalizeHist(gray)
 
-    # ---- OCR ----
-    results = reader.readtext(processed)
+    return gray
 
-    textos = []
+def extract_text(path, pipeline):
 
-    for bbox, text, conf in results:
-        textos.append({
-            "text": text,
-            "confidence": conf
-        })
+    img = preprocess_image(path)
 
-    return textos
+    # Keras OCR espera imagen en RGB
+    img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+
+    prediction_groups = pipeline.recognize([img])[0]
+
+    # ordenar por posición (arriba → abajo, izquierda → derecha)
+    prediction_sorted = sorted(
+        prediction_groups,
+        key=lambda x: (x[1][:,1].mean(), x[1][:,0].mean())
+    )
+
+    words = [text for text, box in prediction_sorted]
+
+    return " ".join(words)

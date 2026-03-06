@@ -2,7 +2,13 @@
 Proyecto de automatización en Python, usando Playwright para descargar imágenes de un sitio web, detectar objetos usando YOLOv11 y extraer texto mediante OCR.
 
 ## Requisitos
-- Python 3.8+
+- Python 3.10
+
+### Crear entorno virtual
+`py -3.10 -m venv venv`
+
+### Activar entorno virtual
+`venv\Scripts\activate`
 
 ### Instalar dependencias
 `pip install -r requirements.txt`
