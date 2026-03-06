@@ -20,10 +20,10 @@ Proyecto de automatización en Python, usando Playwright para descargar imágene
 
 ### Ejecutar scraper
 `python .\app.py`
-<img width="1015" height="359" alt="image" src="https://github.com/user-attachments/assets/d6da8f95-eb96-438e-91c8-0e4d0ddee356" />
-<img width="309" height="266" alt="image" src="https://github.com/user-attachments/assets/17aca982-b17b-49c2-b43b-42a00c4c751c" />
-<img width="970" height="623" alt="image" src="https://github.com/user-attachments/assets/9de397ca-4723-49f0-aabd-dff756748955" />
-<img width="969" height="625" alt="image" src="https://github.com/user-attachments/assets/db4d723f-33dc-4df6-9979-df373f77f006" />
-<img width="969" height="625" alt="image" src="https://github.com/user-attachments/assets/bda8a4b8-3ba6-45c2-b955-ea0d94af17fa" />
-<img width="966" height="623" alt="image" src="https://github.com/user-attachments/assets/3767467c-d3e8-420e-88e7-1265cc687e19" />
+<img width="1314" height="482" alt="image" src="https://github.com/user-attachments/assets/2cde027d-5d32-40d8-ad7e-064b8cc4f712" />
+<img width="1314" height="483" alt="image" src="https://github.com/user-attachments/assets/0d2eb806-2eea-470b-9d45-8d97e0bb8731" />
+<img width="310" height="265" alt="image" src="https://github.com/user-attachments/assets/6efe5db9-7947-4927-86fc-57afb58144c4" />
+<img width="974" height="459" alt="image" src="https://github.com/user-attachments/assets/d4972a56-4169-4b85-85b1-ef51b90cd787" />
+<img width="1033" height="455" alt="image" src="https://github.com/user-attachments/assets/fee7e2c0-515c-4214-86c4-b6da44e72b85" />
+
 
